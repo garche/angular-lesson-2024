@@ -2,6 +2,7 @@ import { MainComponent } from './components/main.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderModule } from '../../modues';
+import { MainRoutingModule } from "./main.routing.module";
 
 @NgModule({
     declarations: [
@@ -13,6 +14,7 @@ import { HeaderModule } from '../../modues';
     imports: [
         CommonModule,
         HeaderModule,
+        // MainRoutingModule,
     ],
     providers: [],
 })

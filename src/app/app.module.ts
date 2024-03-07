@@ -25,7 +25,6 @@ import { HeaderModule } from "./modues";
     ],
     bootstrap: [AppComponent],
     schemas: [NO_ERRORS_SCHEMA],
-    // jit: true,
 
 })
 export class AppModule { }
