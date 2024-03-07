@@ -17,12 +17,15 @@ export class PersonDetailComponent {
 
     public person!: IPerson;
 
+    public backUrl: string = '';
     constructor(
         private _activatedRoute: ActivatedRoute,
         private _personService: PersonManagerService,
         private _router: Router,
         private _cdr: ChangeDetectorRef,
     ) {
+        this.backUrl = this._activatedRoute.snapshot.queryParams['back'] || '';
+
         this._activatedRoute.params
             .subscribe((params: Params) => {
                 const person: IPerson | undefined = this._personService.getPersonById(+params['id']);
@@ -35,5 +38,9 @@ export class PersonDetailComponent {
                 this.person = person;
                 this._cdr.markForCheck()
             })
+    }
+
+    public navigateBack(): void {
+      this._router.navigate([this.backUrl]);
     }
 }
