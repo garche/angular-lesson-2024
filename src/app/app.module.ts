@@ -4,15 +4,21 @@ import { AppComponent } from './component/app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoggerService } from './service/logger.service';
 import { MainModule } from "./children/main/main.module";
+import { NotFoundComponent } from "./children/not-found/not-found.component";
+import { AboutComponent } from "./children/about/about.component";
+import { HeaderModule } from "./modues";
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        AboutComponent,
+        NotFoundComponent,
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         MainModule,
+        HeaderModule,
     ],
     providers: [
         LoggerService
