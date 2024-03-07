@@ -23,28 +23,15 @@ export class PersonDetailComponent {
         private _router: Router,
         private _cdr: ChangeDetectorRef,
     ) {
-        this._activatedRoute.params
-            .subscribe((params: Params) => {
-                const person: IPerson | undefined = this._personService.getPersonById(+params['id']);
-                if(!person){
-                    this._router.navigate(['not-found'])
+        const person: IPerson | undefined = this._personService.getPersonById(+this._activatedRoute.snapshot.params['id'])
 
-                    return;
-                }
+        if(!person){
+            this._router.navigate(['not-found'])
 
-                this.person = person;
-                this._cdr.markForCheck()
-            })
+            return;
+        }
 
-        // const person: IPerson | undefined = this._personService.getPersonById(+this._activatedRoute.snapshot.params['id'])
-        //
-        // if(!person){
-        //     this._router.navigate(['not-found'])
-        //
-        //     return;
-        // }
-        //
-        // this.person = person;
+        this.person = person;
     }
 }
 
