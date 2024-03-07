@@ -7,15 +7,11 @@ const routes: Routes = [
     {
         path: '',
         component: MainComponent,
-        children: [{
-          path: 'person/:id',
-          component: PersonDetailComponent
-        }]
     },
-    // {
-    //   path: 'person/:id',
-    //   component: PersonDetailComponent
-    // }
+    {
+      path: 'person/:id',
+      component: PersonDetailComponent
+    }
 ]
 
 @NgModule({

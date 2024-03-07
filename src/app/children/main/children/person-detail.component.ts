@@ -35,27 +35,5 @@ export class PersonDetailComponent {
                 this.person = person;
                 this._cdr.markForCheck()
             })
-
-        // const person: IPerson | undefined = this._personService.getPersonById(+this._activatedRoute.snapshot.params['id'])
-        //
-        // if(!person){
-        //     this._router.navigate(['not-found'])
-        //
-        //     return;
-        // }
-        //
-        // this.person = person;
     }
 }
-
-// this._activatedRoute.params
-//   .subscribe((params: Params) => {
-//     const person: IPerson | undefined = this._personService.getPersonById(+params['id']);
-//     if(!person){
-//       this._router.navigate(['not-found'])
-//
-//       return;
-//     }
-//
-//     this.person = person;
-//   })
