@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router, UrlTree } from '@angular/router';
+import { Router, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { USER_NAME_TOKEN } from "../tokens/storage-tokens";
 
 @Injectable({
     providedIn: 'root'
 })
-export class AuthorisationGuard implements CanActivate {
+export class AuthorisationGuard {
 
     constructor(
         private _router: Router,

@@ -1,5 +1,7 @@
 import { Injectable } from "@angular/core";
 import { IPerson } from "../interfaces/person.interface";
+import { ActivatedRoute, UrlTree } from "@angular/router";
+import { PersonDetailComponent } from "../children/person-detail.component";
 
 @Injectable()
 export class PersonManagerService {
@@ -35,5 +37,16 @@ export class PersonManagerService {
         return this.personList.find((person: IPerson) => {
             return person.id === id
         });
+    }
+
+    public leavePersonDetailGuard(component: PersonDetailComponent): boolean | UrlTree {
+        return Boolean(component.isCheckBoxConfirm) ?
+            true:
+            (
+                () => {
+                    alert('вы должны нажать галочку');
+                    return false
+                }
+            )();
     }
 }

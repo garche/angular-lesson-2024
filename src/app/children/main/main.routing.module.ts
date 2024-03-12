@@ -1,8 +1,8 @@
-import { RouterModule, Routes } from "@angular/router";
+import { ActivatedRoute, ActivatedRouteSnapshot, RouterModule, RouterStateSnapshot, Routes } from "@angular/router";
 import { MainComponent } from "./components/main.component";
-import { NgModule } from "@angular/core";
+import { inject, NgModule } from "@angular/core";
 import { PersonDetailComponent } from "./children/person-detail.component";
-import { PersonalDetailGuard } from "./guards/personal-detail.guard";
+import { PersonManagerService } from "./services/person.manger.service";
 
 const routes: Routes = [
     {
@@ -12,7 +12,13 @@ const routes: Routes = [
     {
         path: 'person/:id',
         component: PersonDetailComponent,
-        canDeactivate: [ PersonalDetailGuard ]
+        canDeactivate: [ (component: PersonDetailComponent,
+                          currentRoute: ActivatedRouteSnapshot,
+                          currentState: RouterStateSnapshot,
+                          nextState: RouterStateSnapshot) => {
+            return nextState.url === '/login' ? true :
+                inject(PersonManagerService).leavePersonDetailGuard(component)
+        } ]
     }
 ]
 
