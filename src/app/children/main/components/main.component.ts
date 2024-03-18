@@ -28,4 +28,9 @@ export class MainComponent {
             },
         })
     }
+
+    public navigateToDog(): void {
+        this._router.navigate(['main', 'dog'], {
+        })
+    }
 }

@@ -3,6 +3,7 @@ import { MainComponent } from "./components/main.component";
 import { inject, NgModule } from "@angular/core";
 import { PersonDetailComponent } from "./children/person-detail.component";
 import { PersonManagerService } from "./services/person.manger.service";
+import { DogPictureComponent } from "./children/dog-picture.component";
 
 const routes: Routes = [
     {
@@ -19,6 +20,10 @@ const routes: Routes = [
             return nextState.url === '/login' ? true :
                 inject(PersonManagerService).leavePersonDetailGuard(component)
         } ]
+    },
+    {
+        path: 'dog',
+        component: DogPictureComponent
     }
 ]
 
