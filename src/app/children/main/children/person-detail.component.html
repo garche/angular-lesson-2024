@@ -1,6 +1,6 @@
 <ng-container *ngIf="backUrl">
     <button (click)="navigateBack()">Назад</button>
 </ng-container>
-<my-header title="{{ person.name }}"></my-header>
+<my-header *ngIf="person$ | async as person" title="{{ person.name }}"></my-header>
 <label>Поставьте если хотите уйти</label>
 <input type="checkbox" #checkbox id="checkBox">

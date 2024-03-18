@@ -6,6 +6,7 @@ import {
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { IPerson } from "../interfaces/person.interface";
 import { PersonManagerService } from "../services/person.manger.service";
+import { map, Observable, switchMap, tap } from "rxjs";
 
 @Component({
     selector: 'app-person-detail',
@@ -22,7 +23,15 @@ export class PersonDetailComponent {
       return this.checkbox.nativeElement.checked
     }
 
-    public person!: IPerson;
+    public person$: Observable<IPerson | undefined> = this._activatedRoute.data
+        .pipe(
+            map((data: {[k: string]: any}) => data['person']),
+            tap((person: IPerson) => {
+                if(!person) {
+                    this._router.navigate([ 'not-found' ])
+                }
+            })
+        );
 
     public backUrl: string = '';
     constructor(
@@ -32,19 +41,6 @@ export class PersonDetailComponent {
         private _cdr: ChangeDetectorRef,
     ) {
         this.backUrl = this._activatedRoute.snapshot.queryParams['back'] || '';
-
-        this._activatedRoute.params
-            .subscribe((params: Params) => {
-                const person: IPerson | undefined = this._personService.getPersonById(+params['id']);
-                if(!person){
-                    this._router.navigate(['not-found'])
-
-                    return;
-                }
-
-                this.person = person;
-                this._cdr.markForCheck()
-            })
     }
 
     public navigateBack(): void {
